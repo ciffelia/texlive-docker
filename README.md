@@ -38,7 +38,7 @@ $ make shell
 and you can use `platex`, `dvipdfmx`, etc. in the docker container.
 
 
-### Compile from the outside of docker container
+### Compiling from the outside of docker container
 Choose template from `templates`, and copy to `workdir`.
 
 ```bash
@@ -64,6 +64,9 @@ Finally, you can compile LaTeX file by following command.
 ```bash
 $ make mypaper
 ```
+
+### Adding modules
+Edit `Dockerfile` and add `[modulename].sty` file to `${TEXMFLOCAL}/[modulename]`.
 
 ## Contribute
 

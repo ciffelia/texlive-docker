@@ -10,7 +10,7 @@ image: Dockerfile
 # create new container and login to the shell
 .PHONY: shell
 shell:
-	docker container run -it --rm -v ${PWD}/workspace:/workspace ${IMAGE}
+	docker container run -it --rm -v ${PWD}/workdir:/workdir ${IMAGE}
 
 # clean up all stopped containers
 .PHONY: clean
@@ -27,10 +27,13 @@ doomsday:
 # sample
 ## target file is workdir/${XXDIR}/${XXMAIN}.tex
 SAMPLEDIR=sample
-SAMPLEMAIN=template
+SAMPLEMAIN=main
+# uncomment if you want to compile with platex
+#SAMPLEARG=-latex=platex
 sample: workdir/sample/${SAMPLEMAIN}.tex
 	docker container run -it --rm \
 	-v ${PWD}/workdir:/workdir \
 	-w /workdir/${SAMPLEDIR} \
 	${IMAGE} \
-	sh -c "latexmk -C ${SAMPLEMAIN}.tex && latexmk ${SAMPLEMAIN}.tex && dvipdfmx ${SAMPLEMAIN}.dvi && latexmk -c ${SAMPLEMAIN}.tex"
+	sh -c "mktexlsr && latexmk -C ${SAMPLEMAIN}.tex && latexmk ${SAMPLEARG} ${SAMPLEMAIN}.tex && dvipdfmx ${SAMPLEMAIN}.dvi && latexmk -c ${SAMPLEMAIN}.tex"
+

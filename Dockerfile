@@ -1,5 +1,6 @@
 # Copyright (c) 2016 Kaito Udagawa
 # Copyright (c) 2016-2020 3846masa
+# Copyright (c) 2021 wsuzume
 # Released under the MIT license
 # https://opensource.org/licenses/MIT
 
@@ -32,7 +33,7 @@ RUN apk add --no-cache curl perl fontconfig-dev freetype-dev && \
 ARG TEXMFLOCAL=/usr/local/texlive/texmf-local/tex/latex
 WORKDIR /workspace
 
-## pseudo code
+## pseudo code modules
 RUN wget http://captain.kanpaku.jp/LaTeX/jlisting.zip \
     && unzip jlisting.zip \
     && mkdir -p ${TEXMFLOCAL}/listings \
@@ -50,7 +51,10 @@ RUN wget http://mirrors.ctan.org/macros/latex/contrib/algorithmicx.zip \
     && mkdir -p ${TEXMFLOCAL}/algorithmicx \
     && cp algorithmicx/*.sty ${TEXMFLOCAL}/algorithmicx
 
-
+# relax exported file permission
+ARG UID=1000
+RUN adduser -D -u ${UID} latex
+USER ${UID}
 
 WORKDIR /workdir
 

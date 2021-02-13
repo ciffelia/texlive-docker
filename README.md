@@ -11,6 +11,7 @@ Template:
 
 * sample: George Kour's [Style and Template for Preprints (arXiv, bio-arXiv)](https://ja.overleaf.com/latex/templates/style-and-template-for-preprints-arxiv-bio-arxiv/fxsnsrzpnvwc) \(under the Creative Commons CC BY 4.0\)
 * preprint\_en\_single\_column: George Kour's [Style and Template for Preprints (arXiv, bio-arXiv)](https://ja.overleaf.com/latex/templates/style-and-template-for-preprints-arxiv-bio-arxiv/fxsnsrzpnvwc) \(under the Creative Commons CC BY 4.0\)
+* tohoku\_univ\_master\_thesis: Master's thesis template of Tohoku University \(under the Unlicense\)
 
 ## Table of Contents
 

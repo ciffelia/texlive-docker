@@ -55,12 +55,15 @@ Then, edit `Makefile`. Copy and paste `sample` command and edit like following.
 ## target file is workdir/${XXDIR}/${XXMAIN}.tex
 MYPAPERDIR=mypaper
 MYPAPERMAIN=main
+# uncomment if you want to compile with platex
+#MYPAPERARG=-latex=platex
 mypaper: workdir/sample/${MYPAPERMAIN}.tex
 	docker container run -it --rm \
 	-v ${PWD}/workdir:/workdir \
 	-w /workdir/${MYPAPERDIR} \
 	${IMAGE} \
-	sh -c "latexmk -C ${MYPAPERMAIN}.tex && latexmk ${MYPAPERMAIN}.tex && dvipdfmx ${MYPAPERMAIN}.dvi && latexmk -c ${MYPAPERMAIN}.tex"
+	sh -c "mktexlsr && latexmk -C ${MYPAPERMAIN}.tex && latexmk ${MYPAPERARG} ${MYPAPERMAIN}.tex && dvipdfmx ${MYPAPERMAIN}.dvi && latexmk -c ${MYPAPERMAIN}.tex"
+
 ```
 
 Finally, you can compile LaTeX file by following command.
@@ -80,5 +83,7 @@ PRs accepted.
 
 MIT © wsuzume
 
+## Contact
+使い方わからない，とかでも声かけて大丈夫です．
 
-
+Twitter: @wsuzume

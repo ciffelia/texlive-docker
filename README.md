@@ -2,7 +2,7 @@
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg)](https://github.com/RichardLitt/standard-readme)
 
-> Minimal TeX Live image based on alpine
+> TeX Live image based on alpine
 
 Forked from [Paperist/docker-alpine-texlive-ja](https://github.com/Paperist/docker-alpine-texlive-ja
 ) \(under the MIT License\).
@@ -25,6 +25,8 @@ $ git clone https://github.com/wsuzume/docker-alpine-texlive
 $ cd docker-alpine-texlive
 $ make image
 ```
+
+Insalling sometimes fails if choosed mirror sever was weak.
 
 ## Usage
 ### Entering docker container

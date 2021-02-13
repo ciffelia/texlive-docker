@@ -28,7 +28,6 @@ RUN apk add --no-cache curl perl fontconfig-dev freetype-dev && \
     rm -fr /tmp/install-tl-unx && \
     apk del .fetch-deps
 
-
 # for additional modules
 ARG TEXMFLOCAL=/usr/local/texlive/texmf-local/tex/latex
 WORKDIR /workspace
@@ -50,6 +49,8 @@ RUN wget http://mirrors.ctan.org/macros/latex/contrib/algorithmicx.zip \
     && unzip algorithmicx.zip \
     && mkdir -p ${TEXMFLOCAL}/algorithmicx \
     && cp algorithmicx/*.sty ${TEXMFLOCAL}/algorithmicx
+
+RUN chmod -R 777 /usr/local/texlive 
 
 # relax exported file permission
 ARG UID=1000

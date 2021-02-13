@@ -1,12 +1,15 @@
-# wsuzume/alpine-texlive
+# wsuzume/docker-alpine-texlive
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg)](https://github.com/RichardLitt/standard-readme)
 
 > Minimal TeX Live image based on alpine
 
-Forked from [Paperist/docker-alpine-texlive-ja] \(under the MIT License\).
+Forked from [Paperist/docker-alpine-texlive-ja](https://github.com/Paperist/docker-alpine-texlive-ja
+) \(under the MIT License\).
 
-[Paperist/docker-alpine-texlive-ja]: https://github.com/Paperist/docker-alpine-texlive-ja
+Template:
+
+* preprint\_en\_single\_column: [Style and Template for Preprints (arXiv, bio-arXiv)](https://ja.overleaf.com/latex/templates/style-and-template-for-preprints-arxiv-bio-arxiv/fxsnsrzpnvwc) \(under the Creative Commons CC BY 4.0\)
 
 ## Table of Contents
 

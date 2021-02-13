@@ -21,14 +21,48 @@ Template:
 ## Install
 
 ```bash
-docker pull paperist/alpine-texlive-ja
+$ git clone https://github.com/wsuzume/docker-alpine-texlive
+$ cd docker-alpine-texlive
+$ make image
 ```
 
 ## Usage
+### Entering docker container
+
+Just run
 
 ```bash
-$ docker run --rm -it -v $PWD:/workdir paperist/alpine-texlive-ja
-$ latexmk -C main.tex && latexmk main.tex && latexmk -c main.tex
+$ make shell
+```
+
+and you can use `platex`, `dvipdfmx`, etc. in the docker container.
+
+
+### Compile from the outside of docker container
+Choose template from `templates`, and copy to `workdir`.
+
+```bash
+$ cp -r templates/preprint_en_single_column workdir/mypaper
+```
+
+Then, edit `Makefile`. Copy and paste `sample` command and edit like following.
+
+```Makefile
+## target file is workdir/${XXDIR}/${XXMAIN}.tex
+MYPAPERDIR=mypaper
+MYPAPERMAIN=main
+mypaper: workdir/sample/${MYPAPERMAIN}.tex
+	docker container run -it --rm \
+	-v ${PWD}/workdir:/workdir \
+	-w /workdir/${MYPAPERDIR} \
+	${IMAGE} \
+	sh -c "latexmk -C ${MYPAPERMAIN}.tex && latexmk ${MYPAPERMAIN}.tex && dvipdfmx ${MYPAPERMAIN}.dvi && latexmk -c ${MYPAPERMAIN}.tex"
+```
+
+Finally, you can compile LaTeX file by following command.
+
+```bash
+$ make mypaper
 ```
 
 ## Contribute
@@ -37,7 +71,7 @@ PRs accepted.
 
 ## License
 
-MIT © 3846masa
+MIT © wsuzume
 
 
 

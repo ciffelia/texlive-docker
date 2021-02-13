@@ -27,6 +27,31 @@ RUN apk add --no-cache curl perl fontconfig-dev freetype-dev && \
     rm -fr /tmp/install-tl-unx && \
     apk del .fetch-deps
 
+
+# for additional modules
+ARG TEXMFLOCAL=/usr/local/texlive/texmf-local/tex/latex
+WORKDIR /workspace
+
+## pseudo code
+RUN wget http://captain.kanpaku.jp/LaTeX/jlisting.zip \
+    && unzip jlisting.zip \
+    && mkdir -p ${TEXMFLOCAL}/listings \
+    && cp jlisting/jlisting.sty ${TEXMFLOCAL}/listings
+
+RUN wget http://mirrors.ctan.org/macros/latex/contrib/algorithms.zip \
+    && unzip algorithms.zip \
+    && cd algorithms \
+    && latex algorithms.ins \
+    && mkdir -p ${TEXMFLOCAL}/algorithms \
+    && cp *.sty ${TEXMFLOCAL}/algorithms
+
+RUN wget http://mirrors.ctan.org/macros/latex/contrib/algorithmicx.zip \
+    && unzip algorithmicx.zip \
+    && mkdir -p ${TEXMFLOCAL}/algorithmicx \
+    && cp algorithmicx/*.sty ${TEXMFLOCAL}/algorithmicx
+
+
+
 WORKDIR /workdir
 
 CMD ["sh"]

@@ -3,6 +3,10 @@ SOURCE=Dockerfile
 IMAGE=${USERNAME}/alpine-texlive:latest
 CONTAINER=alpine-texlive
 
+ifeq ($(OS),Windows_NT)
+	PWD=$(CURDIR)
+endif
+
 # build container image
 .PHONY: build
 build: Dockerfile
@@ -42,15 +46,3 @@ sample: workdir/sample/${SAMPLEMAIN}.tex
 	-w /workdir/${SAMPLEDIR} \
 	${IMAGE} \
 	sh -c "mktexlsr && latexmk -C ${SAMPLEMAIN}.tex && latexmk ${SAMPLEARG} ${SAMPLEMAIN}.tex && dvipdfmx ${SAMPLEMAIN}.dvi && latexmk -c ${SAMPLEMAIN}.tex"
-
-# sample
-## target file is workdir/${XXDIR}/${XXMAIN}.tex
-SAMPLE2DIR=sample2
-SAMPLE2MAIN=main
-SAMPLE2ARG=-latex=platex
-sample2: workdir/sample/${SAMPLE2MAIN}.tex
-	docker container run -it --rm \
-	-v ${PWD}/workdir:/workdir \
-	-w /workdir/${SAMPLE2DIR} \
-	${IMAGE} \
-	sh -c "mktexlsr && latexmk -C ${SAMPLE2MAIN}.tex && latexmk ${SAMPLE2ARG} ${SAMPLE2MAIN}.tex && dvipdfmx ${SAMPLE2MAIN}.dvi && latexmk -c ${SAMPLE2MAIN}.tex"

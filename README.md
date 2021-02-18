@@ -25,10 +25,13 @@ Template:
 ```bash
 $ git clone https://github.com/wsuzume/docker-alpine-texlive
 $ cd docker-alpine-texlive
-$ make image
+
+$ make pull
+# or
+$ make build
 ```
 
-Insalling sometimes fails if choosed mirror sever was weak.
+Building an image sometimes fails if choosed mirror sever was weak.
 
 ## Usage
 ### Entering docker container
